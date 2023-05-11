@@ -33,7 +33,7 @@ int main()
 	int row2, col2;
 	int value;
 	int **arr;
-	TwoD matrix3;
+	
 	
 	cout << "Enter the row and column dimensions of the array" << endl;
 	cin >> row1 >> col1;
@@ -68,7 +68,8 @@ int main()
 
 	
 	cout << "matrix3 = matrix2" << endl;
-	matrix3 = matrix2;
+	// using the copy constructor same result as using the '=' operator
+	TwoD matrix3(matrix2);
 	cout << "matrix3 = " << endl;
 	arr = matrix3.getArr();
 	
@@ -153,14 +154,24 @@ TwoD:: TwoD(int _row, int _col)
 //copy constructor
 TwoD:: TwoD(TwoD& arr2)
 {
-	int **tempArr = arr2.getArr();
+
 	row = arr2.getRow();
 	col = arr2.getCol();
+
+	// making the pointee for the calling object (same problem as the overloading =)
+	
+	// redine the arr, (to make it in THE DIFFERENT ADDRESS)
+	arr = new int*[row];
+	for (int i = 0; i < row; i++)
+	{
+		arr[i] = new int[col];
+	}
+
 	for(int i=0;i<row;i++)
 	{
 		for(int j=0;j<col;j++)
 		{
-			arr[i][j] = tempArr[i][j];
+			arr[i][j] = arr2.arr[i][j];
 		}
 	}
 }
