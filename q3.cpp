@@ -40,7 +40,7 @@ int main()
 	
 	cout << "Enter the row and column dimensions of the array" << endl;
 	cin >> row1 >> col1;
-	
+	// matrix1 has the pointer after this code
 	TwoD matrix1(row1, col1);
 	
 	cout << "Enter " << row1 << " of " << col1 << " integer each" << endl;
@@ -56,18 +56,32 @@ int main()
 	cout << "Enter the row and column dimensions of the array" << endl;
 	cin >> row2 >> col2;
 	
+	// matrix2 has the pointer after this code
 	TwoD matrix2(row2, col2);	
 	
 	cout << "Enter " << row2 << " of " << col2 << " integer each" << endl;
-	for(int i=0;i<row1;i++)
+	for(int i=0;i<row2;i++)
 	{
-		for(int j=0;j<col1;j++)
+		for(int j=0;j<col2;j++)
 		{
 			cin >> value;
 			matrix2.setValue(i ,j ,value);
 		}
 	}
 	cout << endl;
+
+	// testing matrix1 and matrix 2
+
+	for (int i = 0; i < row1; i++)
+	{
+		for (int j = 0; j < col1; j++)
+		{
+			cout <<" testing  code " <<matrix1.getArr()[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	// until this no problem
 	
 	cout << "matrix3 = matrix2" << endl;
 	matrix3 = matrix2;
@@ -127,13 +141,18 @@ TwoD& TwoD:: operator +(TwoD& arr2)
 
 TwoD& TwoD:: operator =(TwoD& arr2)
 {
-	/*TwoD tempArr;
-	tempArr.setArr(arr2.getArr());
-	tempArr.setRow(arr2.getRow());
-	tempArr.setCol(arr2.getCol());*/
-	cout << "(0)" << endl;
 	row = arr2.row;
 	col = arr2.col;
+	// problem 1, no pointee (no thing that can be pointed by the calling object)
+	
+	// make the pointee
+	arr = new int*[row];
+	for (int i = 0; i < row; i++)
+	{
+		arr[i] = new int[col];
+	}
+	cout << "(0)" << endl;
+
 	cout << "(1)" << endl;
 	for(int i=0;i<row;i++)
 	{
