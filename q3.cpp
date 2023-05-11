@@ -21,14 +21,11 @@ public:
 	TwoD& operator +(TwoD& arr2);
 	
 	
-	
 private:
 	int **arr;
 	int row;
 	int col;
 };
-
-
 
 int main()
 {
@@ -40,7 +37,6 @@ int main()
 	
 	cout << "Enter the row and column dimensions of the array" << endl;
 	cin >> row1 >> col1;
-	// matrix1 has the pointer after this code
 	TwoD matrix1(row1, col1);
 	
 	cout << "Enter " << row1 << " of " << col1 << " integer each" << endl;
@@ -55,8 +51,7 @@ int main()
 	
 	cout << "Enter the row and column dimensions of the array" << endl;
 	cin >> row2 >> col2;
-	
-	// matrix2 has the pointer after this code
+
 	TwoD matrix2(row2, col2);	
 	
 	cout << "Enter " << row2 << " of " << col2 << " integer each" << endl;
@@ -70,18 +65,7 @@ int main()
 	}
 	cout << endl;
 
-	// testing matrix1 and matrix 2
 
-	for (int i = 0; i < row1; i++)
-	{
-		for (int j = 0; j < col1; j++)
-		{
-			cout <<" testing  code " <<matrix1.getArr()[i][j] << " ";
-		}
-		cout << endl;
-	}
-
-	// until this no problem
 	
 	cout << "matrix3 = matrix2" << endl;
 	matrix3 = matrix2;
@@ -118,24 +102,15 @@ int main()
 
 TwoD& TwoD:: operator +(TwoD& arr2)
 {
-	/*TwoD tempArr(row, col);
-	int** tArr = new int*[col];
-	for(int i=0;i<row;i++)
-		tArr[i] = new int [row];*/
-
-	cout << "(1)" << endl; 
+	// the operator success because arr & arr2.arr have a pointee
 	for(int i=0;i<row;i++)
 	{
 		for(int j=0;j<col;j++)
 		{
-			cout << "(11)" << endl;
+
 			arr[i][j] += arr2.arr[i][j];
-			//tArr[i][j] = arr[i][j] + arr2.arr[i][j];
-			//tempArr.setRow(row + arr2.row);
-			//tempArr.setCol(col + arr2.col);
 		}
 	}
-	//tempArr.setArr(tArr);
 	return *this;
 }
 
@@ -151,9 +126,6 @@ TwoD& TwoD:: operator =(TwoD& arr2)
 	{
 		arr[i] = new int[col];
 	}
-	cout << "(0)" << endl;
-
-	cout << "(1)" << endl;
 	for(int i=0;i<row;i++)
 	{
 		for(int j=0;j<col;j++)
