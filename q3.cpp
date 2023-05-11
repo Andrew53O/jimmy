@@ -8,7 +8,7 @@ class TwoD
 public:
 	TwoD();
 	TwoD(int _row, int _col);
-	TwoD(TwoD&);
+	TwoD(TwoD&); // COPY CONSRUCTOR MUST BE CALL BE REFERENCE
 	~TwoD();
 	int** getArr();
 	int getRow();
@@ -17,8 +17,8 @@ public:
 	void setRow(int row);
 	void setCol(int col);
 	void setValue(int r,int c, int value);
-	TwoD& operator =(TwoD& arr2);
-	TwoD& operator +(TwoD& arr2);
+	TwoD operator =(TwoD arr2);
+	TwoD operator +(TwoD arr2);
 	
 	
 private:
@@ -101,7 +101,7 @@ int main()
 	
 }
 
-TwoD& TwoD:: operator +(TwoD& arr2)
+TwoD TwoD:: operator +(TwoD arr2)
 {
 	// the operator success because arr & arr2.arr have a pointee
 	for(int i=0;i<row;i++)
@@ -112,10 +112,10 @@ TwoD& TwoD:: operator +(TwoD& arr2)
 			arr[i][j] += arr2.arr[i][j];
 		}
 	}
-	return *this;
+	return *this; // return the calling object
 }
 
-TwoD& TwoD:: operator =(TwoD& arr2)
+TwoD TwoD:: operator =(TwoD arr2)
 {
 	row = arr2.row;
 	col = arr2.col;
@@ -134,7 +134,7 @@ TwoD& TwoD:: operator =(TwoD& arr2)
 			arr[i][j] = arr2.arr[i][j];
 		}
 	}
-	return *this;
+	return *this; // return the calling object
 }
 
 TwoD:: TwoD()
@@ -152,7 +152,7 @@ TwoD:: TwoD(int _row, int _col)
 }
 
 //copy constructor
-TwoD:: TwoD(TwoD& arr2)
+TwoD:: TwoD(TwoD& arr2) // COPY CONSRUCTOR MUST BE CALL BE REFERENCE
 {
 
 	row = arr2.getRow();
